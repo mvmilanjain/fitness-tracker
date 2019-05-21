@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subject } from 'rxjs/index';
 
-import { User } from './user.model';
-import { AuthData } from './auth-data.model';
-import { TrainingService } from '../training/training.service';
+import { User } from '../models/user.model';
+import { AuthData } from '../models/auth-data.model';
+import { TrainingService } from './training.service';
+import { UIService } from './ui.service';
 
 @Injectable()
 export class AuthService {
@@ -15,14 +16,17 @@ export class AuthService {
 
   constructor(private router: Router,
     private afAuth: AngularFireAuth,
-    private trainingService: TrainingService) {
+    private trainingService: TrainingService,
+    private uiService: UIService) {
   }
 
   registerUser(authData: AuthData) {
+    this.uiService.startLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
-      console.log(result);
+      this.uiService.stopLoading();
     }).catch(err => {
-      console.error(err);
+      this.uiService.stopLoading();
+      this.uiService.showSnackBar(err.message, null, 3000);
     });
   }
 
@@ -42,10 +46,12 @@ export class AuthService {
   }
 
   login(authData: AuthData) {
+    this.uiService.startLoading();
     this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password).then(result => {
-      console.log(result);
+      this.uiService.stopLoading();
     }).catch(err => {
-      console.error(err);
+      this.uiService.stopLoading();
+      this.uiService.showSnackBar(err.message, null, 3000);
     });
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { StopTrainingComponent } from './stop-training.component';
-import { TrainingService } from '../training.service';
+import { TrainingService } from '../../shared/services/training.service';
 
 @Component({
   selector: 'app-current-training',

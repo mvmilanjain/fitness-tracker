@@ -2,8 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild, OnDestroy } from '@angular
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 
-import { TrainingService } from '../training.service';
-import { Exercise } from '../exercise.model';
+import { TrainingService } from '../../shared/services/training.service';
+import { Exercise } from '../../shared/models/exercise.model';
 
 @Component({
   selector: 'app-past-training',

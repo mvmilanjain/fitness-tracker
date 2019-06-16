@@ -1,33 +1,25 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { AuthService } from './shared/services/auth.service';
-import { UIService } from './shared/services/ui.service';
+import * as fromRoot from './app.reducer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'fitness-tracker';
-  isLoading = false;
-  private loadingSubs: Subscription;
+export class AppComponent implements OnInit {
+  isLoading$: Observable<boolean>;
 
   constructor(private authService: AuthService,
-    private uiService: UIService) { }
-
-  ngOnInit(): void {
-    this.loadingSubs = this.uiService.loadingStateChanged.subscribe(isLoading => {
-      this.isLoading = isLoading;
-    });
-    this.authService.initAuthListener();
+              private store: Store<fromRoot.State>) {
   }
 
-  ngOnDestroy(): void {
-    if (this.loadingSubs) {
-      this.loadingSubs.unsubscribe();
-    }
+  ngOnInit(): void {
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.authService.initAuthListener();
   }
 
 }

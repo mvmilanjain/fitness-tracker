@@ -1,4 +1,4 @@
-<div *ngIf="isLoading" class="overlay" fxLayoutAlign="center center">
+<div *ngIf="(isLoading$ | async)" class="overlay" fxLayoutAlign="center center">
   <mat-spinner></mat-spinner>
 </div>
 <mat-sidenav-container hasBackdrop="true">

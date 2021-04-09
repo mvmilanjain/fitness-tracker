@@ -24,7 +24,7 @@ export class TrainingService {
   fetchAvailableExercises() {
     this.store.dispatch(new UI.StartLoading());
     this.fbSubscriptions.push(this.db.collection('availableExercises').snapshotChanges().pipe(map(docArr => {
-      return docArr.map(doc => {
+      return docArr.map((doc: any) => {
         return {
           id: doc.payload.doc.id,
           ...doc.payload.doc.data()

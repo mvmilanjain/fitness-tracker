@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
 
-import { AuthService } from './shared/services/auth.service';
+import {AuthService} from './shared/services/auth.service';
 import * as fromRoot from './app.reducer';
 
 @Component({

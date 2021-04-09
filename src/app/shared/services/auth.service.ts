@@ -35,7 +35,7 @@ export class AuthService {
 
   registerUser(authData: AuthData) {
     this.store.dispatch(new UI.StartLoading());
-    this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
+    this.afAuth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
       this.store.dispatch(new UI.StopLoading());
     }).catch(err => {
       this.store.dispatch(new UI.StopLoading());
@@ -45,7 +45,7 @@ export class AuthService {
 
   login(authData: AuthData) {
     this.store.dispatch(new UI.StartLoading());
-    this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password).then(result => {
+    this.afAuth.signInWithEmailAndPassword(authData.email, authData.password).then(result => {
       this.store.dispatch(new UI.StopLoading());
     }).catch(err => {
       this.store.dispatch(new UI.StopLoading());
@@ -54,7 +54,7 @@ export class AuthService {
   }
 
   logout() {
-    this.afAuth.auth.signOut();
+    this.afAuth.signOut();
   }
 
 }

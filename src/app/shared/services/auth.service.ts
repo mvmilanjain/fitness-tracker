@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Store } from '@ngrx/store';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Store} from '@ngrx/store';
 
-import { AuthData } from '../models/auth-data.model';
-import { TrainingService } from './training.service';
-import { UIService } from './ui.service';
+import {AuthData} from '../models/auth-data.model';
+import {TrainingService} from './training.service';
+import {UIService} from './ui.service';
 import * as fromRoot from '../../app.reducer';
 import * as UI from '../ui.actions';
 import * as Auth from '../../auth/auth.actions';
